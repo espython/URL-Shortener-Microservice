@@ -1,0 +1,16 @@
+{
+  "name": "url-shortener-fcc",
+  "version": "1.0.0",
+  "description": "A FreeCodeCamp URL-shortener project for the backend certificate",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "node",
+    "express",
+    "FreeCodeCamp"
+  ],
+  "author": "Eslam Hammam",
+  "license": "MIT"
+}
