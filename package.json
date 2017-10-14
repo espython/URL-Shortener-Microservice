@@ -12,5 +12,8 @@
     "FreeCodeCamp"
   ],
   "author": "Eslam Hammam",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "cors": "^2.8.4"
+  }
 }
