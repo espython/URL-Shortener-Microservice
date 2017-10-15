@@ -59,6 +59,23 @@ app.get('/new/:urlToShorten(*)', function(req, res, next) {
 
 });
 
+//reditect the user to the original url when he/she insert the shorten url 
+app.get('/:userInputURL', function(req, res, next) {
+    var inputUrl = req.params.userInputURL;
+    console.log(inputUrl);
+
+    shortUrl.findOne({ "shorterUrl": inputUrl }, function(err, doc) {
+        if (err) {
+            res.send("<h1>Invalid URL</h1>");
+        }
+        console.log(doc);
+        //var url = doc.originalUrl;
+        res.redirect(301, doc.originalUrl);
+    });
+});
+
+
+
 app.listen(3000, () => {
     console.log('App is running successfully on port 3000');
 });
