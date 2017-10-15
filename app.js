@@ -3,7 +3,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
 var mongoose = require('mongoose');
-var shortUrl = require('./models/database');
+var shortUrls = require('./models/database');
 
 // starting the app 
 const app = express();
@@ -11,7 +11,7 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //Connecting to mongodb database
-mongoose.connect('mongodb://localhost/shortUrls');
+mongoose.connect('mongodb://espython-fcc:url-fcc@ds119675.mlab.com:19675/url-shortener-database');
 
 app.get('/new/:urlToShorten(*)', function(req, res, next) {
     var { urlToShorten } = req.params;
@@ -37,7 +37,7 @@ app.get('/new/:urlToShorten(*)', function(req, res, next) {
     if (regex.test(urlToShorten)) {
         var endUrl = randomString();
         console.log('valid url');
-        var data = new shortUrl({
+        var data = new shortUrls({
             originalUrl: urlToShorten,
             shorterUrl: endUrl
         });
@@ -60,11 +60,11 @@ app.get('/new/:urlToShorten(*)', function(req, res, next) {
 });
 
 //reditect the user to the original url when he/she insert the shorten url 
-app.get('/:userInputURL', function(req, res, next) {
-    var inputUrl = req.params.userInputURL;
-    console.log(inputUrl);
+app.get('/:userInput', function(req, res, next) {
+    var inputUrl = req.params;
+    console.log(inputUrl.userInput);
 
-    shortUrl.findOne({ "shorterUrl": inputUrl }, function(err, doc) {
+    shortUrls.findOne({ "shorterUrl": inputUrl.userInput }, function(err, doc) {
         if (err) {
             res.send("<h1>Invalid URL</h1>");
         }

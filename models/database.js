@@ -10,6 +10,6 @@ var urlSchema = new Schema({
     timestamps: true
 });
 
-var modelClass = mongoose.model('shortUrl', urlSchema);
+var modelClass = mongoose.model('shortUrls', urlSchema);
 
 module.exports = modelClass;
